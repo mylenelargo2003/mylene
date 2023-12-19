@@ -1,0 +1,76 @@
+#include <stdio.h>
+
+// Define a structure to represent a book
+struct Book {
+    char title[100];
+    char author[100];
+    int year;
+};
+
+// Define the maximum number of books in the library
+#define MAX_BOOKS 100
+
+// Define the library as an array of Book structures
+struct Book library[MAX_BOOKS];
+
+// Variable to keep track of the number of books in the library
+int numBooks = 0;
+
+// Function to add a book to the library
+void addBook() {
+    if (numBooks < MAX_BOOKS) {
+        printf("Enter book title: ");
+        scanf("%s", library[numBooks].title);
+        
+        printf("Enter author name: ");
+        scanf("%s", library[numBooks].author);
+        
+        printf("Enter publication year: ");
+        scanf("%d", &library[numBooks].year);
+
+        printf("Book added successfully!\n");
+        numBooks++;
+    } else {
+        printf("Library is full. Cannot add more books.\n");
+    }
+}
+
+// Function to display the list of books in the library
+void displayBooks() {
+    printf("List of Books in the Library:\n");
+    for (int i = 0; i < numBooks; i++) {
+        printf("Title: %s | Author: %s | Year: %d\n", library[i].title, library[i].author, library[i].year);
+    }
+}
+
+int main() {
+    
+    printf("Welcome to Mylene's Library\n ");
+    int choice;
+
+    do {
+        printf("\nLibrary Management System\n");
+        printf("1. Add Book\n");
+        printf("2. Display Books\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                addBook();
+                break;
+            case 2:
+                displayBooks();
+                break;
+            case 3:
+                printf("Exiting the program. Goodbye!\n");
+                break;
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+
+    } while (choice != 3);
+
+    return 0;
+}
